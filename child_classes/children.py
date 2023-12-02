@@ -55,4 +55,4 @@ print(reg.send())
 
 aut = AuthUserRoute()
 aut.set_parameters(data=data)
-print(reg.send())
+print(aut.send())
