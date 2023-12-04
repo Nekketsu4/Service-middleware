@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api_route.child_classes.children import *
+from api_route.services.children import *
 from api_route.serializers import RegAuthSerializer
 
 
