@@ -24,7 +24,6 @@ class Route:
     def send(self, uri: str, method='GET'):
         url = self.URL + self.APP_ID + uri
         response = requests.request(url=url, method=method, data=self.get_parameters())
-        self.set_response(response.json())
-        return self.get_response()
+        self.set_response(response)
 
 

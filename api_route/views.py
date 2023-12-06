@@ -20,8 +20,8 @@ class BotListView(APIView):
 
     def get(self, request):
         bots = BotList()
-        data = bots.send(uri='/bots')
-        return Response(data=data, status=status.HTTP_200_OK)
+        bots.send(uri='/bots')
+        return Response(bots.get_response().json(), status=bots.get_response().status_code)
 
 
 class BotDetailView(APIView):
@@ -29,8 +29,8 @@ class BotDetailView(APIView):
 
     def get(self, request, pk):
         bot = BotDetail()
-        data = bot.send(uri='/bots/' + str(pk))
-        return Response(data, status=status.HTTP_200_OK)
+        bot.send(uri='/bots/' + str(pk))
+        return Response(bot.get_response().json(), status=bot.get_response().status_code)
 
 
 class RegUserRouteView(APIView):
@@ -45,8 +45,8 @@ class RegUserRouteView(APIView):
             validated = serializer.validated_data
             reg = RegUserRoute()
             reg.set_parameters(data=validated)
-            data = reg.send(uri='/users')
-            return Response(data, status=status.HTTP_201_CREATED)
+            reg.send(uri='/users')
+            return Response(reg.get_response().json(), status=reg.get_response().status_code)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -60,11 +60,11 @@ class AuthUserRouteView(APIView):
         serializer = RegAuthSerializer(data=request.data)
         if serializer.is_valid():
             validated = serializer.validated_data
-            reg = AuthUserRoute()
-            reg.set_parameters(data=validated)
-            data = reg.send(uri='/users/login')
-            return Response(data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            auth = AuthUserRoute()
+            auth.set_parameters(data=validated)
+            auth.send(uri='/users/login')
+            return Response(auth.get_response().json(), status=auth.get_response().status_code)
+        return Response(serializer.errors, status=request.status_code)
 
 
 
