@@ -7,7 +7,8 @@ class BotList(Route):
     def send(self, uri: str, method='GET'):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
-        return super().send(uri=uri)
+        super().send(uri=uri)
+        return self.get_response()
 
 
 class BotDetail(Route):
@@ -16,7 +17,8 @@ class BotDetail(Route):
     def send(self, uri: str, method='GET'):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
-        return super().send(uri=uri)
+        super().send(uri=uri)
+        return self.get_response()
 
 
 class RegUserRoute(Route):
