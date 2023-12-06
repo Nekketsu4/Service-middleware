@@ -7,6 +7,14 @@ from api_route.serializers import RegAuthSerializer
 
 
 
+error = {
+    'error': {
+        'status': '404',
+        'code': 'Not Found',
+        'message': 'route not found'
+    }
+}
+
 class BotListView(APIView):
     """Информация списка ботов"""
 
@@ -29,7 +37,7 @@ class RegUserRouteView(APIView):
     """Регистрация пользователя"""
 
     def get(self, request):
-        return Response({'error': 'route not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request):
         serializer = RegAuthSerializer(data=request.data)
@@ -46,7 +54,7 @@ class AuthUserRouteView(APIView):
     """Авторизация пользователя"""
 
     def get(self, request):
-        return Response({'error': 'route not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response(error, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request):
         serializer = RegAuthSerializer(data=request.data)
