@@ -4,7 +4,7 @@ from api_route.route.route import Route
 class BotList(Route):
     """ Информация по боту """
 
-    def send(self, uri: str, method='GET'):
+    def send(self, uri: str, method):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
         super().send(uri=uri, method=method)
@@ -14,7 +14,7 @@ class BotList(Route):
 class BotDetail(Route):
     """ Информация по ботам """
 
-    def send(self, uri: str, method='GET'):
+    def send(self, uri: str, method):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
         super().send(uri=uri, method=method)
@@ -24,7 +24,7 @@ class BotDetail(Route):
 class RegUserRoute(Route):
     """ Регистрация пользователя """
 
-    def send(self, uri: str, method='POST'):
+    def send(self, uri: str, method):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
         super().send(uri=uri, method=method)
@@ -34,7 +34,7 @@ class RegUserRoute(Route):
 class AuthUserRoute(Route):
     """ Авторизация пользователя """
 
-    def send(self, uri: str, method='POST'):
+    def send(self, uri: str, method):
         # Некая логика (например проверить статусы кода и выполнить какие либо действия)
 
         super().send(uri=uri, method=method)
