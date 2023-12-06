@@ -3,6 +3,7 @@ import requests
 
 class Route:
     APP_ID = '2750bc42-702e-4cbe-bae5-798f171389e1'
+    URL = 'http://core.webstktw.beget.tech/api/v0/apps/'
 
     def __init__(self):
         self._parameters = {}
@@ -21,8 +22,9 @@ class Route:
         return self._response
 
     def send(self, uri: str, method='GET'):
-        url = 'http://core.webstktw.beget.tech/api/v0/apps/' + self.APP_ID + uri
-        response = requests.request(url=url, method=method, data=self._parameters)
+        url = self.URL + self.APP_ID + uri
+        response = requests.request(url=url, method=method, data=self.get_parameters())
         self.set_response(response.json())
         return self.get_response()
+
 

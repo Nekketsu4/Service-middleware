@@ -13,7 +13,7 @@ class BotListView(APIView):
     def get(self, request):
         bots = BotList()
         data = bots.send(uri='/bots')
-        return Response(data)
+        return Response(data=data, status=status.HTTP_200_OK)
 
 
 class BotDetailView(APIView):
@@ -22,11 +22,14 @@ class BotDetailView(APIView):
     def get(self, request, pk):
         bot = BotDetail()
         data = bot.send(uri='/bots/' + str(pk))
-        return Response(data)
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class RegUserRouteView(APIView):
     """Регистрация пользователя"""
+
+    def get(self, request):
+        return Response({'error': 'route not found'}, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request):
         serializer = RegAuthSerializer(data=request.data)
@@ -42,6 +45,9 @@ class RegUserRouteView(APIView):
 class AuthUserRouteView(APIView):
     """Авторизация пользователя"""
 
+    def get(self, request):
+        return Response({'error': 'route not found'}, status=status.HTTP_404_NOT_FOUND)
+
     def post(self, request):
         serializer = RegAuthSerializer(data=request.data)
         if serializer.is_valid():
@@ -49,7 +55,8 @@ class AuthUserRouteView(APIView):
             reg = AuthUserRoute()
             reg.set_parameters(data=validated)
             data = reg.send(uri='/users/login')
-            return Response(data, status=status.HTTP_201_CREATED)
+            return Response(data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
